@@ -1,0 +1,12 @@
+
+fun foo() {
+    print "File to read:";
+    var filePath = input();
+    var fileContent = readFile(filePath);
+    return fileContent;
+}
+
+var start = clock();
+print foo();
+var duration = clock() - start;
+print "Duration: " + duration/1000 + "ms";

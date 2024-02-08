@@ -1,0 +1,14 @@
+class Rectangle {
+
+    init(x, y) {
+        this.y = y;
+        this.x = x;
+    }
+
+    area() {
+        return this.x * this.y;
+    }
+}
+
+var rec = Rectangle(10, 20);
+print rec.area();

@@ -1,0 +1,149 @@
+class Node {
+    init(value) {
+        this.value = value;
+        this.next = nil;
+    }
+}
+
+class LinkedList {
+    init() {
+        this.head = nil;
+        this.length = 0;
+    }
+
+    push(value) {
+        this.length = this.length + 1;
+        var newNode = Node(value);
+        var current = this.head;
+
+        if (current) {
+            while (current.next) {
+                current = current.next;
+            }
+            current.next = newNode;
+        } else {
+            this.head = newNode;
+        }
+    }
+
+    pop() {
+        if (!this.head) {
+            return nil;
+        }
+        
+        this.length = this.length - 1;
+        var current = this.head;
+        for (var i = 0; i < this.length-1; i = i + 1) {
+            current = current.next;
+        }
+
+        var value = current.next.value;
+        current.next = nil;
+        return value;
+    }
+
+    get(index) {
+        if (!this.head) {
+            return nil;
+        }
+
+        if (index >= this.length) {
+            return nil;
+        }
+
+        var current = this.head;
+        for (var i = 0; i < index; i = i + 1) {
+            current = current.next;
+        }
+
+        return current.value;
+    }
+
+    insert(index, value) {
+        if (!this.head) {
+            return nil;
+        }
+
+        if (index >= this.length) {
+            return nil;
+        }
+
+        var current = this.head;
+        for (var i = 0; i < index; i = i + 1) {
+            current = current.next;
+        }
+
+        var tmp = current.value;
+        current.value = value;
+        return tmp;
+    }
+
+    remove(index) {
+        if (!this.head) {
+            return nil;
+        }
+
+        if (index >= this.length) {
+            return nil;
+        }
+
+        this.length = this.length - 1;
+
+        if (index == 0) {
+            var value = this.head.value;
+            this.head = this.head.next;
+            return value;
+        }
+        
+        var current = this.head;
+        for (var i = 0; i < index-1; i = i + 1) {
+            current = current.next;
+        }
+
+        var value = current.next.value;
+        var tmp = current.next.next;
+        current.next = tmp;
+        
+        return value;
+    }
+
+    printList() {
+        var current = this.head;
+        while (current) {
+            print current.value;
+            current = current.next;
+        }
+    }
+
+    clear() {
+        this.head = nil;
+        this.length = 0;
+    }
+}
+
+var list = LinkedList();
+list.push(1);
+list.push(2);
+list.push(3);
+list.push(4);
+list.printList();
+
+
+print "-------- pop --------";
+list.pop();
+print "Size: " + list.length;
+list.printList();
+
+print "-------- insert 2, false --------";
+list.insert(2, false);
+list.printList();
+
+print "-------- get 2 --------";
+print list.get(2);
+
+ print "-------- remove 0 --------";
+print "Removed: " + list.remove(0);
+
+print "-------- print --------";
+print list.printList();
+
