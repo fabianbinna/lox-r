@@ -45,7 +45,6 @@ impl NativeFunction {
     }
 
     fn read_file(&self, path: String) -> Object {
-        println!("{}", path.clone());
         let path_buf = PathBuf::from(path.trim());
         
         match read_to_string(path_buf) {
